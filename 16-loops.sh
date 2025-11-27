@@ -33,7 +33,7 @@ do
     then
         echo "$pkg is not installed, Going to install it ......!" | tee -a $LOG_FILE
         dnf install $pkg -y &>>$LOG_FILE
-        validate $? $pkg
+        validate $? "$pkg"
     else 
         echo -e "$Y $pkg is already installed $N" | tee -a $LOG_FILE
     fi
