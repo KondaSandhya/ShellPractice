@@ -33,10 +33,10 @@ fi
 
 VALIDATE()
 {
-
     if [ $1 -eq 0 ]
     then 
         echo "$2 is installed successfully"
     else
         echo "$2 installation failed"
+    fi
 }
