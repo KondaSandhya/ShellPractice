@@ -26,12 +26,13 @@ if [ $? -ne 0 ]
 then
     echo "nginx is not installed, Going to install it ......!"
     dnf install nginx -y
-    validate $? "nginx"
+    VALIDATE $? "nginx"
 else 
     echo "nginx is already installed"
 fi
 
-validate(){
+VALIDATE()
+{
 
     if [ $1 -eq 0 ]
     then 
