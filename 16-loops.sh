@@ -37,7 +37,7 @@ do
     else 
         echo -e "$Y $pkg is already installed $N" | tee -a $LOG_FILE
     fi
-
+done
 # dnf list installed nginx &>>$LOG_FILE
 
 # if [ $? -ne 0 ]
