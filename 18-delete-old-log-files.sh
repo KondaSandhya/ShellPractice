@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-find . -type -f -name "*.log" -mtime +9 
+find . -name "*.log" -type f -mtime +9 
