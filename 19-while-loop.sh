@@ -9,4 +9,4 @@
 
 while read -r line; do
     echo $line
-done <<<17-set.sh
+done <17-set.sh
