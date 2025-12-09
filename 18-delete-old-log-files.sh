@@ -1,4 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-find . -name "*.log" -type f -mtime +9 
+while IFS= read -r line; do
+    echo "Deleting the file: $line"
+done <<<find . -name "*.log" -type f -mtime +9 
