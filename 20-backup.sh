@@ -38,9 +38,14 @@ FILES=find "$SOURCE_DIR" -type f -mtime +$DAYS
     
 # fi
 
-while read -r file; do
-    echo "Backing up file: $file"
-    tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "$file"
-done <<< "$FILES"
+echo "Backing up file: $FILES"
+tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "$FILES"
+if [ $? -eq 0 ]; then
+    echo "Backup completed successfully. Backup stored at: $DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz"
+else
+    echo "Backup failed."
+    exit 1
+fi
+
 
 
