@@ -38,7 +38,7 @@ FILES=find "$SOURCE_DIR" -type f -mtime +$DAYS
     
 # fi
 
-while read -f file; do
+while read -r file; do
     echo "Backing up file: $file"
     tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "$file"
 done <<< "$FILES"
