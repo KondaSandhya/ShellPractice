@@ -5,7 +5,7 @@ DEST_DIR=$2
 DAYS=${3:-14}  # Default to 14 days if not provided
 ZIP_FILE="backup"
 
-if [ $# -ne 2 ] 
+if [ $# -le 2 ] 
 then
     echo "Usage: $0 <SOURCE_DIR> <DEST_DIR> <DAYS> ( optional)" 
     exit 1
