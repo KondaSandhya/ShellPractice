@@ -24,7 +24,6 @@ then
 fi
 
 find "$SOURCE_DIR" -type f -mtime +$DAYS > $DEST_DIR/temp_file.txt
-mkdir -p "$DEST_DIR/$ZIP_FILE"
 #echo "Backing up file: $FILES"
 tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "-T $DEST_DIR/temp_file.txt"
 #rm -f temp_file.txt
