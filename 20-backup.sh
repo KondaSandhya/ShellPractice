@@ -23,6 +23,7 @@ then
     exit 1
 fi
 
+
 find "$SOURCE_DIR" -type f -mtime +$DAYS > $DEST_DIR/temp_file.txt
 tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" -T "$DEST_DIR/temp_file.txt"
 rm -f $DEST_DIR/temp_file.txt
