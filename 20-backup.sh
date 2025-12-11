@@ -2,7 +2,7 @@
 
 SOURCE_DIR=$1
 DEST_DIR=$2
-DAYS=$(3:-14)
+DAYS=${3:-14}  # Default to 14 days if not provided
 ZIP_FILE="backup"
 
 if [ $# -ne 2 ] 
