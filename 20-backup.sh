@@ -29,10 +29,13 @@ tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" -T "$DEST_DIR/temp_
 rm -f $DEST_DIR/temp_file.txt
 if [ $? -eq 0 ]; then
     echo "Backup completed successfully. Backup stored at: $DEST_DIR directory."
+    rm -rf $(find "$SOURCE_DIR" -type f -mtime +$DAYS)
+    echo "Old files deleted from source directory."
 else
     echo "Backup failed."
     exit 1
 fi
+
 
 # if [ -z "$FILES" ]
 # then 
