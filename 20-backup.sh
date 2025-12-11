@@ -23,10 +23,10 @@ then
     exit 1
 fi
 
-FILES=$(find "$SOURCE_DIR" -type f -mtime +$DAYS)
-
+#FILES=$(find "$SOURCE_DIR" -type f -mtime +$DAYS)
+mkdir -p "$DEST_DIR/$ZIP_FILE"
 echo "Backing up file: $FILES"
-tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "$FILES"
+tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" find "$SOURCE_DIR" -type f -mtime +$DAYS
 if [ $? -eq 0 ]; then
     echo "Backup completed successfully. Backup stored at: $DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz"
 else
