@@ -23,7 +23,16 @@ then
     exit 1
 fi
 
-FILES=find "$SOURCE_DIR/" -type f -mtime +$DAYS 
+FILES=$(find "$SOURCE_DIR" -type f -mtime +$DAYS)
+
+echo "Backing up file: $FILES"
+tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "$FILES"
+if [ $? -eq 0 ]; then
+    echo "Backup completed successfully. Backup stored at: $DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz"
+else
+    echo "Backup failed."
+    exit 1
+fi
 
 # if [ -z "$FILES" ]
 # then 
@@ -37,15 +46,6 @@ FILES=find "$SOURCE_DIR/" -type f -mtime +$DAYS
 #     echo "Backup completed successfully. Backup stored at: $DEST_DIR/$ZIP_FILE-$TIMESTAMP.tar.gz"
     
 # fi
-
-echo "Backing up file: $FILES"
-tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" "$FILES"
-if [ $? -eq 0 ]; then
-    echo "Backup completed successfully. Backup stored at: $DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz"
-else
-    echo "Backup failed."
-    exit 1
-fi
 
 
 
