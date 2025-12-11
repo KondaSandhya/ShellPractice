@@ -23,7 +23,7 @@ then
     exit 1
 fi
 
-FILES=find "$SOURCE_DIR" -type f -mtime +$DAYS 
+FILES=find "$SOURCE_DIR/" -type f -mtime +$DAYS 
 
 # if [ -z "$FILES" ]
 # then 
