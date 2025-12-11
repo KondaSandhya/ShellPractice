@@ -3,7 +3,7 @@
 SOURCE_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14}  # Default to 14 days if not provided
-ZIP_FILE="backup"
+
 
 if [ $# -le 2 ] 
 then
@@ -23,10 +23,16 @@ then
     exit 1
 fi
 
+TIME_STAMP=$(date +"%Y%m%d_%H%M%S")
+Dest="$DEST_DIR/backup_$TIME_STAMP"
+mkdir -p "$Dest"
 
-find "$SOURCE_DIR" -type f -mtime +$DAYS > $DEST_DIR/temp_file.txt
-tar -czf "$DEST_DIR/$ZIP_FILE-$(date +%Y%m%d_%H%M%S).tar.gz" -T "$DEST_DIR/temp_file.txt"
-rm -f $DEST_DIR/temp_file.txt
+#creating temp file to store list of files to be backed up
+touch temp_file.txt
+
+find "$SOURCE_DIR" -type f -mtime +$DAYS > temp_file.txt
+tar -czf "$Dest.tar.gz" -T "temp_file.txt"
+rm -f temp_file.txt
 if [ $? -eq 0 ]; then
     echo "Backup completed successfully. Backup stored at: $DEST_DIR directory."
     rm -rf $(find "$SOURCE_DIR" -type f -mtime +$DAYS)
